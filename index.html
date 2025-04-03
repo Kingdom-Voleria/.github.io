@@ -7,71 +7,54 @@
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<!-- TOP MENU -->
+    <!-- TOP MENU -->
     <header class="header">
         <div class="header-left">
             <img src="image/header_emblem.png" class="header-logo" alt="Герб Королевства Волерия">
             <h1 class="header-title">Центральная избирательная комиссия <br>Королевства Волерия</h1>
         </div>
         <nav class="header-links">
-            <a href="main.html">Главная</a>
-            <a href="index.html">Голосования</a>
+            <a href="index.html">Главная</a>
+            <a href="elections.html">Голосования</a>
             <a href="#">Профиль</a>
         </nav>
     </header>
 
-    <!-- ELECTORAL BLOCK -->
-    <div class="selection-active">
-        <h2 class="title-active">
-            <img src="image/icon/selection.png" class="selection-icon" alt="Иконка голосования">
-            Проходящие голосования
-        </h2>
+    <div class="main-content">
+        <div class="content-section">
+            <div class="section-image">
+                <img src="image/header_emblem.png" alt="ЦИК Волерии">
+            </div>
+            <div class="section-text">
+                <h2>Добро пожаловать на сайт ЦИК Королевства Волерия!</h2>
+                <p>На данном сайте организуются выборы и референдумы, которые проходят на территории Королевства Волерия. Здесь вы сможете зарегестрироваться на электронное голосование и проголосовать прямо на этом сайте.</p>
 
-        <div class="selection-block">
-            <p>В настоящее время нет активных голосований</p>
+                <div class="action-buttons">
+                    <a href="#register" class="action-button" id="register-btn">Как зарегистрироваться?</a>
+                    <a href="#vote" class="action-button" id="vote-btn">Как проголосовать?</a>
+                </div>
+            </div>
         </div>
-    </div>
-
-    <div class="selection-inactive">
-        <h2 class="title-inactive">
-            <img src="image/icon/selection.png" class="selection-icon" alt="Иконка голосования">
-            Ближайшие голосования
-        </h2>
-
-        <a href="vote.html" style="text-decoration: none;">
-        	<div class="selection-block">
-            	<p class="title-block">Парламентские выборы</p>
-            	<p class="selection-description">Выборы депутатов Парламента Королевства Волерия</p>
-            	<p class="selection-date">
-                	<img src="image/icon/date.png" class="date-icon" alt="Иконка даты">
-                	<span class="date-text">1 мая 2025 года - 3 мая 2025 года</span>
-            	</p>
-                
-                <!-- Блок статуса проверки -->
-                <!-- 
-                    ПРИМЕЧАНИЕ ДЛЯ РАЗРАБОТЧИКА:
-                    Теперь есть 3 возможных статуса:
-                    1. approved - профиль проверен и допущен
-                    2. rejected - профиль проверен и не допущен
-                    3. pending - профиль на проверке
-                    
-                    В профиле пользователя нужно хранить поле verificationStatus
-                    со значениями: "approved", "rejected", "pending"
-                -->
-                <div class="selection-status status-pending">
-                    <img src="image/icon/hourglass.png" class="status-icon" alt="Песочные часы">
-                    <span>Ваш профиль на проверке. Голосование недоступно</span>
-                </div>
-                <div class="selection-status status-approved" style="display: none;">
-                    <img src="image/icon/check_mark.png" class="status-icon" alt="Галочка">
-                    <span class="status-approved">Вы допущены до голосования</span>
-                </div>
-                <div class="selection-status status-rejected" style="display: none;">
-                    <img src="image/icon/cross.png" class="status-icon" alt="Крестик">
-                    <span class="status-rejected">Вы не допущены до голосования</span>
-                </div>
-        	</div>
-    	</a>
+        
+        <div class="content-section" id="register">
+            <div class="section-text">
+                <h2>Как зарегестрировать на электронное голосование?</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio.</p>
+            </div>
+            <div class="section-image">
+                <img src="image/passport.png" alt="Паспорт Волерии" style="padding-left: 200px;">
+            </div>
+        </div>
+        
+        <div class="content-section" id="vote">
+            <div class="section-image">
+                <img src="image/building.png" alt="Здание ЦИК">
+            </div>
+            <div class="section-text">
+                <h2>Как проголосовать?</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio.</p>
+            </div>
+        </div>
     </div>
 
 	<script src="main.js"></script>

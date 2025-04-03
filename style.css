@@ -12,6 +12,13 @@ body {
     line-height: 1.6;
     color: #333;
     background-color: #fff;
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body {
+        scroll-behavior: auto;
+    }
 }
 
 .header {
@@ -292,7 +299,40 @@ input[type="radio"] {
     color: #555;
 }
 
-/* Медиазапросы, отсортированные от большего к меньшему */
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.action-button {
+    padding: 12px 20px;
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+    min-width: 150px;
+    white-space: nowrap;
+}
+
+.action-button:hover {
+    background-color: #0054a9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#register .section-image img {
+    max-width: 80%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Объединенные медиазапросы для планшетов и десктопов */
 @media (min-width: 769px) {
     .header {
         flex-direction: row;
@@ -317,6 +357,7 @@ input[type="radio"] {
     }
 }
 
+/* Мобильные устройства */
 @media (max-width: 768px) {
     .content-section {
         flex-direction: row;
@@ -346,6 +387,34 @@ input[type="radio"] {
     
     .section-text p {
         font-size: 14px;
+    }
+    
+    .action-buttons {
+        gap: 8px;
+        overflow-x: auto;
+        padding-bottom: 5px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    
+    .action-buttons::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .action-button {
+        padding: 8px 12px;
+        font-size: 14px;
+        min-width: 0;
+        flex: 0 0 auto;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 45vw;
+    }
+
+    #register .section-image img {
+    max-width: 100%;
+    padding-left: 0;
     }
 }
 
@@ -388,5 +457,22 @@ input[type="radio"] {
     
     .section-text p {
         font-size: 13px;
+    }
+    
+    .action-button {
+        font-size: 13px;
+        padding: 7px 10px;
+    }
+}
+
+@media (max-width: 350px) {
+    .action-buttons {
+        gap: 5px;
+    }
+    
+    .action-button {
+        font-size: 12px;
+        min-width: 80px;
+        padding: 6px 8px;
     }
 }

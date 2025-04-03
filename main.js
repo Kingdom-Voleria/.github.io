@@ -21,6 +21,26 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+document.querySelectorAll('.action-button').forEach(button => {
+    button.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (targetId.startsWith('#')) {
+            e.preventDefault();
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - 80;
+                
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
+    });
+});
+
+
 // vote
 
 document.querySelectorAll('.vote-option').forEach(option => {
@@ -82,3 +102,7 @@ function getUserProfile() {
     };
 }
 */
+
+
+
+
