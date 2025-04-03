@@ -5,492 +5,517 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ЦИК Королевства Волерия</title>
     <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-}
-body {
-    font-family: 'Arial', 'Verdana', sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background-color: #fff;
-    scroll-behavior: smooth;
-}
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+        body {
+            font-family: 'Arial', 'Verdana', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+            scroll-behavior: smooth;
+        }
 
-@media (prefers-reduced-motion: reduce) {
-    body {
-        scroll-behavior: auto;
-    }
-}
+        @media (prefers-reduced-motion: reduce) {
+            body {
+                scroll-behavior: auto;
+            }
+        }
 
-.header {
-    display: flex;
-    flex-direction: column;
-    padding: 10px 5%;
-    background-color: #f8f8f8;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
+        .header {
+            display: flex;
+            flex-direction: column;
+            padding: 10px 0;
+            background-color: #f8f8f8;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width: 100%;
+        }
 
-.header-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 0 5%;
+        }
 
-.header-left {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    flex-wrap: wrap;
-}
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
 
-.header-logo {
-    height: 50px;
-    width: auto;
-}
+        .header-logo {
+            height: 50px;
+            width: auto;
+        }
 
-.header-title {
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-    margin: 0;
-}
+        .header-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin: 0;
+        }
 
-.header-links {
-    display: flex;
-    gap: 15px;
-    font-size: 16px;
-    margin-top: 10px;
-    width: 100%;
-    justify-content: center;
-    border-top: 1px solid #eee;
-    padding-top: 10px;
-}
+        .header-links {
+            display: flex;
+            gap: 15px;
+            font-size: 16px;
+            width: 100%;
+            justify-content: center;
+            border-top: 1px solid #eee;
+            padding: 10px 5%;
+            background-color: #f8f8f8;
+        }
 
-.header-links a {
-    text-decoration: none;
-    color: #333;
-    font-weight: 500;
-    white-space: nowrap;
-    padding: 5px 10px;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-}
+        .header-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            white-space: nowrap;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
 
-.header-links a:hover {
-    color: #0066cc;
-    background-color: #f0f0f0;
-}
+        .header-links a:hover {
+            color: #0066cc;
+            background-color: #f0f0f0;
+        }
 
-.title-active, .title-inactive {
-    text-align: center;
-    margin: 30px 0;
-    font-size: 25px;
-    font-family: 'Arial', 'Verdana', sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
+        .title-active, .title-inactive {
+            text-align: center;
+            margin: 30px 0;
+            font-size: 25px;
+            font-family: 'Arial', 'Verdana', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
 
-.selection-icon {
-    width: 30px;
-    height: 30px;
-    object-fit: contain;
-}
+        .selection-icon {
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
+        }
 
-.date-icon {
-    width: 25px;
-    height: 25px;
-    margin-right: 6px;
-    vertical-align: middle;
-}
+        .date-icon {
+            width: 25px;
+            height: 25px;
+            margin-right: 6px;
+            vertical-align: middle;
+        }
 
-.selection-active {
-    display: none;
-}
+        .selection-active {
+            display: none;
+        }
 
-.selection-block {
-    width: 90%;
-    max-width: 500px;
-    padding: 20px;
-    margin: 15px auto;
-    background-color: #f8f9fa;
-    border: 1px solid #dee2e6;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    font-family: Arial, sans-serif;
-    color: #212529;
-    line-height: 1.5;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
+        .selection-block {
+            width: 90%;
+            max-width: 500px;
+            padding: 20px;
+            margin: 15px auto;
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            font-family: Arial, sans-serif;
+            color: #212529;
+            line-height: 1.5;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
 
-.selection-block:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-}
+        .selection-block:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
 
-.selection-block p {
-    margin-bottom: 0;
-}
+        .selection-block p {
+            margin-bottom: 0;
+        }
 
-.title-block {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
+        .title-block {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
 
-.selection-description {
-    color: #666;
-    font-size: 16px;
-    margin-bottom: 8px;
-}
+        .selection-description {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
 
-.selection-date {
-    margin-top: 10px;
-    font-size: 14px;
-    color: #555;
-    display: flex;
-    align-items: center;
-}
+        .selection-date {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555;
+            display: flex;
+            align-items: center;
+        }
 
-.date-text {
-    margin-left: 5px;
-}
+        .date-text {
+            margin-left: 5px;
+        }
 
-.selection-status {
-    margin-top: 10px;
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-    padding: 5px 0;
-}
+        .selection-status {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            padding: 5px 0;
+        }
 
-.status-icon {
-    width: 25px;
-    height: 25px;
-    margin-right: 8px;
-}
+        .status-icon {
+            width: 25px;
+            height: 25px;
+            margin-right: 8px;
+        }
 
-.status-approved {
-    color: #28a745; 
-}
+        .status-approved {
+            color: #28a745; 
+        }
 
-.status-rejected {
-    color: #dc3545; 
-}
+        .status-rejected {
+            color: #dc3545; 
+        }
 
-.status-pending {
-    color: #ffc107; 
-}
+        .status-pending {
+            color: #ffc107; 
+        }
 
-.voting-block {
-    max-width: 500px;
-    margin: 20px auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-}
+        .voting-block {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
 
-.voting-block h3 {
-    margin-top: 0;
-    color: #333;
-}
+        .voting-block h3 {
+            margin-top: 0;
+            color: #333;
+        }
 
-.vote-option {
-    margin: 10px 0;
-    padding: 12px;
-    background-color: #fff;
-    border-radius: 4px;
-    border: 1px solid #ddd;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
+        .vote-option {
+            margin: 10px 0;
+            padding: 12px;
+            background-color: #fff;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
 
-.vote-option:hover {
-    border-color: #0066cc;
-}
+        .vote-option:hover {
+            border-color: #0066cc;
+        }
 
-.vote-option.selected {
-    background-color: #e6f2ff;
-    border-color: #0066cc;
-}
+        .vote-option.selected {
+            background-color: #e6f2ff;
+            border-color: #0066cc;
+        }
 
-.vote-option label {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    width: 100%;
-    height: 100%;
-}
+        .vote-option label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+        }
 
-.vote-option input[type="radio"] {
-    margin-right: 10px;
-}
+        .vote-option input[type="radio"] {
+            margin-right: 10px;
+        }
 
-.voting-block button {
-    margin-top: 15px;
-    padding: 10px 15px;
-    background-color: #0066cc;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+        .voting-block button {
+            margin-top: 15px;
+            padding: 10px 15px;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
 
-.voting-block button:hover {
-    background-color: #0054a9;
-}
+        .voting-block button:hover {
+            background-color: #0054a9;
+        }
 
-:root {
-    --radio-color: #0066cc;
-}
+        :root {
+            --radio-color: #0066cc;
+        }
 
-input[type="radio"] {
-    accent-color: var(--radio-color);
-    width: 16px;
-    height: 16px;
-}
+        input[type="radio"] {
+            accent-color: var(--radio-color);
+            width: 16px;
+            height: 16px;
+        }
 
-.main-content {
-    padding: 40px 5%;
-}
+        .main-content {
+            padding: 40px 5%;
+        }
 
-.content-section {
-    display: flex;
-    align-items: center;
-    margin-bottom: 60px;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-}
+        .content-section {
+            display: flex;
+            align-items: center;
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
 
-.content-section.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
+        .content-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-.section-image {
-    flex: 1;
-    padding: 20px;
-}
+        .section-image {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-.section-image img {
-    max-width: 80%;
-    height: auto;
-}
+        .section-image img {
+            max-width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
 
-.section-text {
-    flex: 1;
-    padding: 20px;
-}
+        /* Специальные стили для изображения паспорта */
+        #register .section-image img {
+            max-width: 50%; /* Уменьшенный размер */
+            max-height: 400px; /* Фиксированная максимальная высота */
+        }
 
-.section-text h2 {
-    font-size: 28px;
-    margin-bottom: 1px;
-    color: #0066cc;
-    padding-bottom: 10px;
-}
+        .section-text {
+            flex: 1;
+            padding: 20px;
+        }
 
-.section-text p {
-    font-size: 18px;
-    line-height: 1.6;
-    color: #555;
-}
+        .section-text h2 {
+            font-size: 28px;
+            margin-bottom: 1px;
+            color: #0066cc;
+            padding-bottom: 10px;
+        }
 
-.action-buttons {
-    display: flex;
-    gap: 15px;
-    margin-top: 20px;
-}
+        .section-text p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
 
-.action-button {
-    padding: 12px 20px;
-    background-color: #0066cc;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    text-decoration: none;
-    font-size: 16px;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    text-align: center;
-    min-width: 150px;
-    white-space: nowrap;
-}
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
 
-.action-button:hover {
-    background-color: #0054a9;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+        .action-button {
+            padding: 12px 20px;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+            min-width: 150px;
+            white-space: nowrap;
+        }
 
-#register .section-image img {
-    max-width: 80%;
-    height: auto;
-    object-fit: contain;
-}
+        .action-button:hover {
+            background-color: #0054a9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
-/* Объединенные медиазапросы для планшетов и десктопов */
-@media (min-width: 769px) {
-    .header {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-    }
+        /* Объединенные медиазапросы для планшетов и десктопов */
+        @media (min-width: 769px) {
+            .header {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px 5%;
+            }
 
-    .header-links {
-        margin-top: 0;
-        width: auto;
-        justify-content: flex-end;
-        border-top: none;
-        padding-top: 0;
-    }
+            .header-links {
+                margin-top: 0;
+                width: auto;
+                justify-content: flex-end;
+                border-top: none;
+                padding: 0;
+                background-color: transparent;
+            }
 
-    .header-logo {
-        height: 75px;
-    }
+            .header-logo {
+                height: 75px;
+            }
 
-    .header-title {
-        font-size: 24px;
-    }
-}
+            .header-title {
+                font-size: 24px;
+            }
+        }
 
-/* Мобильные устройства */
-@media (max-width: 768px) {
-    .content-section {
-        flex-direction: row;
-        align-items: flex-start;
-        margin-bottom: 30px;
-    }
-    
-    .section-image {
-        flex: 0 0 100px;
-        padding: 5px;
-        text-align: center;
-    }
-    
-    .section-image img {
-        max-width: 100%;
-    }
-    
-    .section-text {
-        flex: 1;
-        padding: 5px 10px;
-    }
-    
-    .section-text h2 {
-        font-size: 18px;
-        margin-bottom: 8px;
-    }
-    
-    .section-text p {
-        font-size: 14px;
-    }
-    
-    .action-buttons {
-        gap: 8px;
-        overflow-x: auto;
-        padding-bottom: 5px;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-    }
-    
-    .action-buttons::-webkit-scrollbar {
-        display: none;
-    }
-    
-    .action-button {
-        padding: 8px 12px;
-        font-size: 14px;
-        min-width: 0;
-        flex: 0 0 auto;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 45vw;
-    }
+        /* Мобильные устройства */
+        @media (max-width: 768px) {
+            .content-section {
+                flex-direction: column;
+                margin-bottom: 30px;
+            }
+            
+            .section-image {
+                flex: none;
+                width: 100%;
+                padding: 10px;
+            }
+            
+            .section-image img {
+                max-width: 100%;
+            }
+            
+            /* Специальные стили для паспорта на мобильных */
+            #register .section-image img {
+                max-width: 80%; /* Чуть больше на мобильных */
+                max-height: 300px; /* Меньшая высота */
+            }
+            
+            .section-text {
+                flex: none;
+                width: 100%;
+                padding: 10px;
+            }
+            
+            .section-text h2 {
+                font-size: 18px;
+                margin-bottom: 8px;
+            }
+            
+            .section-text p {
+                font-size: 14px;
+            }
+            
+            .action-buttons {
+                gap: 8px;
+                overflow-x: auto;
+                padding-bottom: 5px;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                justify-content: center;
+            }
+            
+            .action-buttons::-webkit-scrollbar {
+                display: none;
+            }
+            
+            .action-button {
+                padding: 8px 12px;
+                font-size: 14px;
+                min-width: 0;
+                flex: 0 0 auto;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 45vw;
+            }
+        }
 
-    #register .section-image img {
-    max-width: 100%;
-    padding-left: 0;
-    }
-}
+        @media (max-width: 600px) {
+            .header {
+                flex-direction: column;
+                padding: 10px 0;
+            }
 
-@media (max-width: 600px) {
-    .header {
-        flex-direction: column;
-    }
+            .header-top {
+                padding: 0 5%;
+            }
 
-    .header-left {
-        flex-direction: row;
-        align-items: center;
-        gap: 10px;
-        flex-wrap: wrap;
-    }
+            .header-left {
+                flex-direction: row;
+                align-items: center;
+                gap: 10px;
+                flex-wrap: wrap;
+            }
 
-    .header-title {
-        font-size: 16px;
-        flex: 1;
-        min-width: 200px;
-    }
+            .header-title {
+                font-size: 16px;
+                flex: 1;
+                min-width: 200px;
+            }
 
-    .header-logo {
-        height: 55px;
-    }
+            .header-logo {
+                height: 55px;
+            }
 
-    .header-links {
-        font-size: 14px;
-        gap: 10px;
-    }
-}
+            .header-links {
+                font-size: 14px;
+                gap: 10px;
+                padding: 10px 5%;
+            }
+        }
 
-@media (max-width: 480px) {
-    .section-image {
-        flex: 0 0 80px;
-    }
-    
-    .section-text h2 {
-        font-size: 16px;
-    }
-    
-    .section-text p {
-        font-size: 13px;
-    }
-    
-    .action-button {
-        font-size: 13px;
-        padding: 7px 10px;
-    }
-}
+        @media (max-width: 480px) {
+            /* Дополнительное уменьшение паспорта на маленьких экранах */
+            #register .section-image img {
+                max-width: 90%;
+                max-height: 250px;
+            }
+            
+            .section-text h2 {
+                font-size: 16px;
+            }
+            
+            .section-text p {
+                font-size: 13px;
+            }
+            
+            .action-button {
+                font-size: 13px;
+                padding: 7px 10px;
+            }
 
-@media (max-width: 350px) {
-    .action-buttons {
-        gap: 5px;
-    }
-    
-    .action-button {
-        font-size: 12px;
-        min-width: 80px;
-        padding: 6px 8px;
-    }
-}
+            .header-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 350px) {
+            .action-buttons {
+                gap: 5px;
+            }
+            
+            .action-button {
+                font-size: 12px;
+                min-width: 80px;
+                padding: 6px 8px;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- TOP MENU -->
+   <!-- TOP MENU -->
     <header class="header">
-        <div class="header-left">
-            <img src="image/header_emblem.png" class="header-logo" alt="Герб Королевства Волерия">
-            <h1 class="header-title">Центральная избирательная комиссия <br>Королевства Волерия</h1>
+        <div class="header-top">
+            <div class="header-left">
+                <img src="image/header_emblem.png" class="header-logo" alt="Герб Королевства Волерия">
+                <h1 class="header-title">Центральная избирательная комиссия <br>Королевства Волерия</h1>
+            </div>
         </div>
         <nav class="header-links">
             <a href="index.html">Главная</a>
@@ -521,7 +546,7 @@ input[type="radio"] {
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio.</p>
             </div>
             <div class="section-image">
-                <img src="image/passport.png" alt="Паспорт Волерии" style="padding-left: 200px;">
+                <img src="image/passport.png" alt="Паспорт Волерии">
             </div>
         </div>
         
