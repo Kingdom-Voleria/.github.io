@@ -41,6 +41,36 @@ document.querySelectorAll('.action-button').forEach(button => {
 });
 
 
+// elections
+
+document.addEventListener('DOMContentLoaded', function() {
+    const electionBlocks = document.querySelectorAll('.selection-block, .title-active, .title-inactive');
+    
+    function checkElectionVisibility() {
+        electionBlocks.forEach(block => {
+            const rect = block.getBoundingClientRect();
+            const isVisible = (rect.top <= window.innerHeight * 0.8) && 
+                              (rect.bottom >= window.innerHeight * 0.2);
+            
+            if (isVisible) {
+                block.style.opacity = '1';
+                block.style.transform = 'translateY(0)';
+            }
+        });
+    }
+
+    // Установка начальных стилей для анимации
+    electionBlocks.forEach(block => {
+        block.style.opacity = '0';
+        block.style.transform = 'translateY(20px)';
+        block.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    });
+
+    checkElectionVisibility();
+    window.addEventListener('scroll', checkElectionVisibility);
+});
+
+
 // vote
 
 document.querySelectorAll('.vote-option').forEach(option => {

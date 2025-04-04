@@ -7,6 +7,7 @@
     -moz-user-select: none;
     -ms-user-select: none;
 }
+
 body {
     font-family: 'Arial', 'Verdana', sans-serif;
     line-height: 1.6;
@@ -165,7 +166,180 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Десктопная версия (без изменений) */
+.title-active, .title-inactive {
+    text-align: center;
+    margin: 30px 0;
+    font-size: 25px;
+    font-family: 'Arial', 'Verdana', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.selection-icon {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+.date-icon {
+    width: 25px;
+    height: 25px;
+    margin-right: 6px;
+    vertical-align: middle;
+}
+
+.selection-active {
+    display: none;
+}
+
+.selection-block {
+    width: 90%;
+    max-width: 500px;
+    padding: 20px;
+    margin: 15px auto;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    font-family: Arial, sans-serif;
+    color: #212529;
+    line-height: 1.5;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.selection-block:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.selection-block p {
+    margin-bottom: 0;
+}
+
+.title-block {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.selection-description {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.selection-date {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+    display: flex;
+    align-items: center;
+}
+
+.date-text {
+    margin-left: 5px;
+}
+
+.selection-status {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    padding: 5px 0;
+}
+
+.status-icon {
+    width: 25px;
+    height: 25px;
+    margin-right: 8px;
+}
+
+.status-approved {
+    color: #28a745; 
+}
+
+.status-rejected {
+    color: #dc3545; 
+}
+
+.status-pending {
+    color: #ffc107; 
+}
+
+.voting-block {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.voting-block h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+.vote-option {
+    margin: 10px 0;
+    padding: 12px;
+    background-color: #fff;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.vote-option:hover {
+    border-color: #0066cc;
+}
+
+.vote-option.selected {
+    background-color: #e6f2ff;
+    border-color: #0066cc;
+}
+
+.vote-option label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+
+.vote-option input[type="radio"] {
+    margin-right: 10px;
+}
+
+.voting-block button {
+    margin-top: 15px;
+    padding: 10px 15px;
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.voting-block button:hover {
+    background-color: #0054a9;
+}
+
+:root {
+    --radio-color: #0066cc;
+}
+
+input[type="radio"] {
+    accent-color: var(--radio-color);
+    width: 16px;
+    height: 16px;
+}
+
+/* Медиазапросы отсортированы от большего к меньшему */
+
 @media (min-width: 769px) {
     .header {
         flex-direction: row;
@@ -192,7 +366,6 @@ body {
     }
 }
 
-/* Мобильная версия (только центрирование кнопок) */
 @media (max-width: 768px) {
     .content-section:first-child {
         position: relative;
@@ -211,7 +384,6 @@ body {
         justify-content: center;
     }
     
-    /* Остальные мобильные стили без изменений */
     .content-section {
         display: flex;
         flex-wrap: wrap;
@@ -271,6 +443,120 @@ body {
     .section-text p {
         font-size: 14px;
     }
+
+    /* Стили из второго файла для 768px */
+    .content-section {
+        flex-direction: column;
+    }
+    
+    .content-section:first-child {
+        flex-direction: column;
+    }
+    .content-section:first-child .section-image {
+        order: 1;
+    }
+    .content-section:first-child .section-text {
+        order: 2;
+    }
+    
+    #register {
+        flex-direction: column;
+    }
+    #register .section-text {
+        order: 1;
+    }
+    #register .section-image {
+        order: 2;
+    }
+    
+    #vote {
+        flex-direction: column;
+    }
+    #vote .section-image {
+        order: 1;
+    }
+    #vote .section-text {
+        order: 2;
+    }
+    
+    .section-image {
+        flex: none;
+        width: 100%;
+        padding: 10px;
+    }
+    
+    .section-image img {
+        max-width: 100%;
+    }
+    
+    #register .section-image img {
+        max-width: 80%;
+        max-height: 300px;
+    }
+    
+    .section-text {
+        flex: none;
+        width: 100%;
+        padding: 10px;
+    }
+    
+    .action-buttons {
+        gap: 8px;
+        overflow-x: auto;
+        padding-bottom: 5px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        justify-content: center;
+    }
+    
+    .action-buttons::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .action-button {
+        padding: 8px 12px;
+        font-size: 14px;
+        min-width: 0;
+        flex: 0 0 auto;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 45vw;
+    }
+}
+
+@media (max-width: 600px) {
+    .header {
+        flex-direction: column;
+        padding: 10px 0;
+    }
+
+    .header-top {
+        padding: 0 5%;
+    }
+
+    .header-left {
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .header-title {
+        font-size: 16px;
+        flex: 1;
+        min-width: 200px;
+    }
+
+    .header-logo {
+        height: 55px;
+    }
+
+    .header-links {
+        font-size: 14px;
+        gap: 10px;
+        padding: 10px 5%;
+    }
 }
 
 @media (max-width: 480px) {
@@ -317,6 +603,30 @@ body {
         font-size: 13px;
         padding: 8px 4px;
     }
+
+    /* Стили из второго файла для 480px */
+    #register .section-image img {
+        max-width: 90%;
+        max-height: 250px;
+    }
+    
+    .section-text h2 {
+        font-size: 16px;
+    }
+    
+    .section-text p {
+        font-size: 13px;
+    }
+    
+    .action-button {
+        font-size: 13px;
+        padding: 7px 10px;
+    }
+
+    .header-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 }
 
 @media (max-width: 350px) {
@@ -336,5 +646,16 @@ body {
     #vote .section-text {
         flex: 0 0 65%;
         max-width: 65%;
+    }
+
+    /* Стили из второго файла для 350px */
+    .action-buttons {
+        gap: 5px;
+    }
+    
+    .action-button {
+        font-size: 12px;
+        min-width: 80px;
+        padding: 6px 8px;
     }
 }
