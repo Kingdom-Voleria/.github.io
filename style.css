@@ -115,7 +115,6 @@ body {
     object-fit: contain;
 }
 
-/* Специальные стили для изображения паспорта */
 #register .section-image img {
     max-width: 50%;
     max-height: 400px;
@@ -166,7 +165,7 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Десктопная версия */
+/* Десктопная версия (без изменений) */
 @media (min-width: 769px) {
     .header {
         flex-direction: row;
@@ -193,15 +192,32 @@ body {
     }
 }
 
-/* Мобильная версия */
+/* Мобильная версия (только центрирование кнопок) */
 @media (max-width: 768px) {
+    .content-section:first-child {
+        position: relative;
+        padding-bottom: 70px;
+    }
+    
+    .content-section:first-child .action-buttons {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+        width: auto;
+        justify-content: center;
+    }
+    
+    /* Остальные мобильные стили без изменений */
     .content-section {
         display: flex;
         flex-wrap: wrap;
         margin-bottom: 30px;
     }
     
-    /* Общие стили для изображений и текста */
     .section-image, .section-text {
         padding: 15px;
     }
@@ -211,7 +227,6 @@ body {
         max-height: 200px;
     }
     
-    /* Первый блок - изображение слева */
     .content-section:first-child .section-image {
         flex: 0 0 40%;
         max-width: 40%;
@@ -224,26 +239,6 @@ body {
         order: 2;
     }
     
-    /* Кнопки в первом блоке - на всю ширину под текстом */
-    .content-section:first-child .action-buttons {
-        flex: 0 0 100%;
-        max-width: 100%;
-        order: 3;
-        justify-content: center; /* Центрируем только кнопки */
-        margin-top: 15px;
-        padding: 0 10px;
-    }
-    
-    /* Фиксируем размер кнопок */
-    .content-section:first-child .action-button {
-        min-width: 140px;
-        padding: 10px 5px;
-        font-size: 14px;
-        white-space: normal;
-        line-height: 1.3;
-    }
-    
-    /* Второй блок - изображение справа */
     #register .section-text {
         flex: 0 0 60%;
         max-width: 60%;
@@ -256,7 +251,6 @@ body {
         order: 2;
     }
     
-    /* Третий блок - изображение слева */
     #vote .section-image {
         flex: 0 0 40%;
         max-width: 40%;
@@ -269,7 +263,6 @@ body {
         order: 2;
     }
     
-    /* Общие стили для текста на мобильных */
     .section-text h2 {
         font-size: 18px;
         margin-bottom: 8px;
@@ -315,12 +308,10 @@ body {
         justify-content: center;
     }
     
-    /* Уменьшаем отступы и размеры */
     .section-image, .section-text {
         padding: 10px;
     }
     
-    /* Еще больше уменьшаем кнопки на очень маленьких экранах */
     .content-section:first-child .action-button {
         min-width: 120px;
         font-size: 13px;
@@ -333,7 +324,6 @@ body {
         gap: 5px;
     }
     
-    /* Уменьшаем пропорции изображений на очень маленьких экранах */
     .content-section:first-child .section-image,
     #register .section-image,
     #vote .section-image {
