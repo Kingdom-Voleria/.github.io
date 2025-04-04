@@ -379,6 +379,39 @@ input[type="radio"] {
         margin-bottom: 30px;
     }
     
+    /* Первый блок - изображение слева (как на компьютере) */
+    .content-section:first-child {
+        flex-direction: column;
+    }
+    .content-section:first-child .section-image {
+        order: 1;
+    }
+    .content-section:first-child .section-text {
+        order: 2;
+    }
+    
+    /* Второй блок - изображение справа (как на компьютере) */
+    #register {
+        flex-direction: column;
+    }
+    #register .section-text {
+        order: 1;
+    }
+    #register .section-image {
+        order: 2;
+    }
+    
+    /* Третий блок - изображение слева (как на компьютере) */
+    #vote {
+        flex-direction: column;
+    }
+    #vote .section-image {
+        order: 1;
+    }
+    #vote .section-text {
+        order: 2;
+    }
+    
     .section-image {
         flex: none;
         width: 100%;
@@ -562,7 +595,71 @@ input[type="radio"] {
     </div>
 
     <script>
-        
+        // main
+
+document.addEventListener('DOMContentLoaded', function() {
+    const sections = document.querySelectorAll('.content-section');
+    
+    function checkVisibility() {
+        sections.forEach(section => {
+            const rect = section.getBoundingClientRect();
+            const isVisible = (rect.top <= window.innerHeight * 0.8) && 
+                              (rect.bottom >= window.innerHeight * 0.2);
+            
+            if (isVisible) {
+                section.classList.add('visible');
+            }
+        });
+    }
+
+    checkVisibility();
+
+    window.addEventListener('scroll', checkVisibility);
+});
+
+
+document.querySelectorAll('.action-button').forEach(button => {
+    button.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (targetId.startsWith('#')) {
+            e.preventDefault();
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - 80;
+                
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
+    });
+});
+
+
+// vote
+
+document.querySelectorAll('.vote-option').forEach(option => {
+    option.addEventListener('click', function() {
+        const radio = this.querySelector('input[type="radio"]');
+        if (radio) {
+            radio.checked = true;
+            
+            document.querySelectorAll('.vote-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+
+            this.classList.add('selected');
+        }
+    });
+
+    const radio = option.querySelector('input[type="radio"]');
+    if (radio && radio.checked) {
+        option.classList.add('selected');
+    }
+});
+
     </script>
 </body>
 </html>
