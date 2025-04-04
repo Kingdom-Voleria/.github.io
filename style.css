@@ -367,47 +367,12 @@ input[type="radio"] {
 
 /* Мобильные устройства */
 @media (max-width: 768px) {
+    /* Уменьшаем размеры текста и изображений, но сохраняем расположение */
     .content-section {
-        flex-direction: column;
         margin-bottom: 30px;
     }
     
-    /* Первый блок - изображение слева (как на компьютере) */
-    .content-section:first-child {
-        flex-direction: column;
-    }
-    .content-section:first-child .section-image {
-        order: 1;
-    }
-    .content-section:first-child .section-text {
-        order: 2;
-    }
-    
-    /* Второй блок - изображение справа (как на компьютере) */
-    #register {
-        flex-direction: column;
-    }
-    #register .section-text {
-        order: 1;
-    }
-    #register .section-image {
-        order: 2;
-    }
-    
-    /* Третий блок - изображение слева (как на компьютере) */
-    #vote {
-        flex-direction: column;
-    }
-    #vote .section-image {
-        order: 1;
-    }
-    #vote .section-text {
-        order: 2;
-    }
-    
     .section-image {
-        flex: none;
-        width: 100%;
         padding: 10px;
     }
     
@@ -417,13 +382,11 @@ input[type="radio"] {
     
     /* Специальные стили для паспорта на мобильных */
     #register .section-image img {
-        max-width: 80%; /* Чуть больше на мобильных */
-        max-height: 300px; /* Меньшая высота */
+        max-width: 80%;
+        max-height: 300px;
     }
     
     .section-text {
-        flex: none;
-        width: 100%;
         padding: 10px;
     }
     
