@@ -338,8 +338,7 @@ input[type="radio"] {
     height: 16px;
 }
 
-/* Медиазапросы отсортированы от большего к меньшему */
-
+/* Десктопная версия */
 @media (min-width: 769px) {
     .header {
         flex-direction: row;
@@ -364,8 +363,17 @@ input[type="radio"] {
     .header-title {
         font-size: 24px;
     }
+
+    /* Стили для кнопок на десктопах */
+    #register .action-buttons {
+        justify-content: flex-start;
+    }
+    #vote .action-buttons {
+        justify-content: flex-end;
+    }
 }
 
+/* Мобильная версия */
 @media (max-width: 768px) {
     .content-section:first-child {
         position: relative;
@@ -399,18 +407,22 @@ input[type="radio"] {
         max-height: 200px;
     }
     
-    .content-section:first-child .section-image {
+    /* Первый и третий section-text справа, изображения слева */
+    .content-section:first-child .section-image,
+    #vote .section-image {
         flex: 0 0 40%;
         max-width: 40%;
         order: 1;
     }
     
-    .content-section:first-child .section-text {
+    .content-section:first-child .section-text,
+    #vote .section-text {
         flex: 0 0 60%;
         max-width: 60%;
         order: 2;
     }
     
+    /* Второй section-text слева, изображение справа */
     #register .section-text {
         flex: 0 0 60%;
         max-width: 60%;
@@ -420,18 +432,6 @@ input[type="radio"] {
     #register .section-image {
         flex: 0 0 40%;
         max-width: 40%;
-        order: 2;
-    }
-    
-    #vote .section-image {
-        flex: 0 0 40%;
-        max-width: 40%;
-        order: 1;
-    }
-    
-    #vote .section-text {
-        flex: 0 0 60%;
-        max-width: 60%;
         order: 2;
     }
     
@@ -444,62 +444,7 @@ input[type="radio"] {
         font-size: 14px;
     }
 
-    /* Стили из второго файла для 768px */
-    .content-section {
-        flex-direction: column;
-    }
-    
-    .content-section:first-child {
-        flex-direction: column;
-    }
-    .content-section:first-child .section-image {
-        order: 1;
-    }
-    .content-section:first-child .section-text {
-        order: 2;
-    }
-    
-    #register {
-        flex-direction: column;
-    }
-    #register .section-text {
-        order: 1;
-    }
-    #register .section-image {
-        order: 2;
-    }
-    
-    #vote {
-        flex-direction: column;
-    }
-    #vote .section-image {
-        order: 1;
-    }
-    #vote .section-text {
-        order: 2;
-    }
-    
-    .section-image {
-        flex: none;
-        width: 100%;
-        padding: 10px;
-    }
-    
-    .section-image img {
-        max-width: 100%;
-    }
-    
-    #register .section-image img {
-        max-width: 80%;
-        max-height: 300px;
-    }
-    
-    .section-text {
-        flex: none;
-        width: 100%;
-        padding: 10px;
-    }
-    
+    /* Стили для кнопок на мобилках */
     .action-buttons {
         gap: 8px;
         overflow-x: auto;
@@ -507,6 +452,7 @@ input[type="radio"] {
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
         justify-content: center;
+        width: 100%;
     }
     
     .action-buttons::-webkit-scrollbar {
@@ -522,6 +468,14 @@ input[type="radio"] {
         overflow: hidden;
         text-overflow: ellipsis;
         max-width: 45vw;
+    }
+
+    /* Центрирование кнопок в текстовом блоке */
+    #register .section-text .action-buttons,
+    #vote .section-text .action-buttons {
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 
@@ -604,7 +558,6 @@ input[type="radio"] {
         padding: 8px 4px;
     }
 
-    /* Стили из второго файла для 480px */
     #register .section-image img {
         max-width: 90%;
         max-height: 250px;
@@ -621,11 +574,6 @@ input[type="radio"] {
     .action-button {
         font-size: 13px;
         padding: 7px 10px;
-    }
-
-    .header-links {
-        flex-wrap: wrap;
-        justify-content: center;
     }
 }
 
@@ -648,7 +596,6 @@ input[type="radio"] {
         max-width: 65%;
     }
 
-    /* Стили из второго файла для 350px */
     .action-buttons {
         gap: 5px;
     }
