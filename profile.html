@@ -19,6 +19,27 @@
             <a href="profile.html">Профиль</a>
         </nav>
     </header>
+
+    <!-- Registration -->
+    <div class="registration-form">
+        <h2>Регистрация избирателя</h2>
+        <form class="register-form">
+            <div class="form-group">
+                <label for="fullname" class="form-label">Фамилия Имя Отчество</label>
+                <input type="text" id="fullname" name="fullname" class="form-input" required 
+                       pattern="[A-Za-zА-Яа-яЁё\s]+" title="Пожалуйста, используйте только буквы">
+                <span class="form-hint">Отчество не обязательно</span>
+            </div>
+            <div class="form-group">
+                <label for="civilnumber" class="form-label">Гражданский номер</label>
+                <input type="text" id="civilnumber" name="civilnumber" class="form-input" required 
+                       pattern="\d+" title="Пожалуйста, используйте только цифры">
+            </div>
+            <button type="submit" class="action-button submit-button">Зарегистрироваться</button>
+        </form>
+    </div>
+
+    
     <script src="main.js"></script>
 </body>
 </html>

@@ -1,3 +1,4 @@
+/* ====== Base Styles ====== */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -8,6 +9,10 @@
     -ms-user-select: none;
 }
 
+:root {
+    --radio-color: #0066cc;
+}
+
 body {
     font-family: 'Arial', 'Verdana', sans-serif;
     line-height: 1.6;
@@ -16,18 +21,13 @@ body {
     scroll-behavior: smooth;
 }
 
-@media (prefers-reduced-motion: reduce) {
-    body {
-        scroll-behavior: auto;
-    }
-}
-
+/* ====== Header ====== */
 .header {
     display: flex;
     flex-direction: column;
     padding: 10px 0;
     background-color: #f8f8f8;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     width: 100%;
 }
 
@@ -84,6 +84,7 @@ body {
     background-color: #f0f0f0;
 }
 
+/* ====== Main Content ====== */
 .main-content {
     padding: 40px 5%;
 }
@@ -116,7 +117,7 @@ body {
     object-fit: contain;
 }
 
-#register .section-image img {
+.register-section .section-image img {
     max-width: 50%;
     max-height: 400px;
 }
@@ -139,6 +140,7 @@ body {
     color: #555;
 }
 
+/* ====== Buttons ====== */
 .action-buttons {
     display: flex;
     gap: 15px;
@@ -166,6 +168,7 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* ====== Titles ====== */
 .title-active, .title-inactive {
     text-align: center;
     margin: 30px 0;
@@ -190,6 +193,7 @@ body {
     vertical-align: middle;
 }
 
+/* ====== Selection Block ====== */
 .selection-active {
     display: none;
 }
@@ -202,7 +206,7 @@ body {
     background-color: #f8f9fa;
     border: 1px solid #dee2e6;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     font-family: Arial, sans-serif;
     color: #212529;
     line-height: 1.5;
@@ -211,7 +215,7 @@ body {
 
 .selection-block:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .selection-block p {
@@ -230,24 +234,15 @@ body {
     margin-bottom: 8px;
 }
 
-.selection-date {
+.selection-date, .selection-status {
     margin-top: 10px;
     font-size: 14px;
-    color: #555;
     display: flex;
     align-items: center;
 }
 
 .date-text {
     margin-left: 5px;
-}
-
-.selection-status {
-    margin-top: 10px;
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-    padding: 5px 0;
 }
 
 .status-icon {
@@ -257,17 +252,18 @@ body {
 }
 
 .status-approved {
-    color: #28a745; 
+    color: #28a745;
 }
 
 .status-rejected {
-    color: #dc3545; 
+    color: #dc3545;
 }
 
 .status-pending {
-    color: #ffc107; 
+    color: #ffc107;
 }
 
+/* ====== Voting Block ====== */
 .voting-block {
     max-width: 500px;
     margin: 20px auto;
@@ -328,17 +324,68 @@ body {
     background-color: #0054a9;
 }
 
-:root {
-    --radio-color: #0066cc;
-}
-
 input[type="radio"] {
     accent-color: var(--radio-color);
     width: 16px;
     height: 16px;
 }
 
-/* Десктопная версия */
+/* ====== Registration Form ====== */
+.registration-form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.registration-form.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.registration-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #0066cc;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.form-hint {
+    color: #666;
+    font-size: 0.8em;
+    margin-top: 3px;
+}
+
+.submit-button {
+    width: 100%;
+}
+
+/* ====== Media Queries ====== */
+
+/* Min-width: 769px */
 @media (min-width: 769px) {
     .header {
         flex-direction: row;
@@ -364,22 +411,22 @@ input[type="radio"] {
         font-size: 24px;
     }
 
-    /* Стили для кнопок на десктопах */
-    #register .action-buttons {
+    .register-section .action-buttons {
         justify-content: flex-start;
     }
-    #vote .action-buttons {
+
+    .vote-section .action-buttons {
         justify-content: flex-end;
     }
 }
 
-/* Мобильная версия */
+/* Max-width: 768px */
 @media (max-width: 768px) {
     .content-section:first-child {
         position: relative;
         padding-bottom: 70px;
     }
-    
+
     .content-section:first-child .action-buttons {
         position: absolute;
         bottom: 0;
@@ -391,60 +438,57 @@ input[type="radio"] {
         width: auto;
         justify-content: center;
     }
-    
+
     .content-section {
         display: flex;
         flex-wrap: wrap;
         margin-bottom: 30px;
     }
-    
+
     .section-image, .section-text {
         padding: 15px;
     }
-    
+
     .section-image img {
         max-width: 100%;
         max-height: 200px;
     }
-    
-    /* Первый и третий section-text справа, изображения слева */
+
     .content-section:first-child .section-image,
-    #vote .section-image {
+    .vote-section .section-image {
         flex: 0 0 40%;
         max-width: 40%;
         order: 1;
     }
-    
+
     .content-section:first-child .section-text,
-    #vote .section-text {
+    .vote-section .section-text {
         flex: 0 0 60%;
         max-width: 60%;
         order: 2;
     }
-    
-    /* Второй section-text слева, изображение справа */
-    #register .section-text {
+
+    .register-section .section-text {
         flex: 0 0 60%;
         max-width: 60%;
         order: 1;
     }
-    
-    #register .section-image {
+
+    .register-section .section-image {
         flex: 0 0 40%;
         max-width: 40%;
         order: 2;
     }
-    
+
     .section-text h2 {
         font-size: 18px;
         margin-bottom: 8px;
     }
-    
+
     .section-text p {
         font-size: 14px;
     }
 
-    /* Стили для кнопок на мобилках */
     .action-buttons {
         gap: 8px;
         overflow-x: auto;
@@ -454,11 +498,11 @@ input[type="radio"] {
         justify-content: center;
         width: 100%;
     }
-    
+
     .action-buttons::-webkit-scrollbar {
         display: none;
     }
-    
+
     .action-button {
         padding: 8px 12px;
         font-size: 14px;
@@ -470,15 +514,15 @@ input[type="radio"] {
         max-width: 45vw;
     }
 
-    /* Центрирование кнопок в текстовом блоке */
-    #register .section-text .action-buttons,
-    #vote .section-text .action-buttons {
+    .register-section .section-text .action-buttons,
+    .vote-section .section-text .action-buttons {
         justify-content: center;
         margin-left: auto;
         margin-right: auto;
     }
 }
 
+/* Max-width: 600px */
 @media (max-width: 600px) {
     .header {
         flex-direction: column;
@@ -513,85 +557,53 @@ input[type="radio"] {
     }
 }
 
+/* Max-width: 480px */
 @media (max-width: 480px) {
-    .header {
-        flex-direction: column;
-        padding: 10px 0;
-    }
-
-    .header-top {
-        padding: 0 5%;
-    }
-
-    .header-left {
-        flex-direction: row;
-        align-items: center;
-        gap: 10px;
-        flex-wrap: wrap;
-    }
-
-    .header-title {
-        font-size: 16px;
-        flex: 1;
-        min-width: 200px;
-    }
-
-    .header-logo {
-        height: 55px;
-    }
-
-    .header-links {
-        font-size: 14px;
-        gap: 10px;
-        padding: 10px 5%;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
     .section-image, .section-text {
         padding: 10px;
     }
-    
+
     .content-section:first-child .action-button {
         min-width: 120px;
         font-size: 13px;
         padding: 8px 4px;
     }
 
-    #register .section-image img {
+    .register-section .section-image img {
         max-width: 90%;
         max-height: 250px;
     }
-    
+
     .section-text h2 {
         font-size: 16px;
     }
-    
+
     .section-text p {
         font-size: 13px;
     }
-    
+
     .action-button {
         font-size: 13px;
         padding: 7px 10px;
     }
 }
 
+/* Max-width: 350px */
 @media (max-width: 350px) {
     .content-section:first-child .action-buttons {
         gap: 5px;
     }
-    
+
     .content-section:first-child .section-image,
-    #register .section-image,
-    #vote .section-image {
+    .register-section .section-image,
+    .vote-section .section-image {
         flex: 0 0 35%;
         max-width: 35%;
     }
-    
+
     .content-section:first-child .section-text,
-    #register .section-text,
-    #vote .section-text {
+    .register-section .section-text,
+    .vote-section .section-text {
         flex: 0 0 65%;
         max-width: 65%;
     }
@@ -599,10 +611,16 @@ input[type="radio"] {
     .action-buttons {
         gap: 5px;
     }
-    
+
     .action-button {
         font-size: 12px;
         min-width: 80px;
         padding: 6px 8px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body {
+        scroll-behavior: auto;
     }
 }

@@ -1,5 +1,4 @@
-// main
-
+// index
 document.addEventListener('DOMContentLoaded', function() {
     const sections = document.querySelectorAll('.content-section');
     
@@ -20,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', checkVisibility);
 });
 
-
 document.querySelectorAll('.action-button').forEach(button => {
     button.addEventListener('click', function(e) {
         const targetId = this.getAttribute('href');
@@ -40,9 +38,7 @@ document.querySelectorAll('.action-button').forEach(button => {
     });
 });
 
-
 // elections
-
 document.addEventListener('DOMContentLoaded', function() {
     const electionBlocks = document.querySelectorAll('.selection-block, .title-active, .title-inactive');
     
@@ -59,7 +55,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Установка начальных стилей для анимации
     electionBlocks.forEach(block => {
         block.style.opacity = '0';
         block.style.transform = 'translateY(20px)';
@@ -70,9 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', checkElectionVisibility);
 });
 
-
 // vote
-
 document.querySelectorAll('.vote-option').forEach(option => {
     option.addEventListener('click', function() {
         const radio = this.querySelector('input[type="radio"]');
@@ -93,46 +86,29 @@ document.querySelectorAll('.vote-option').forEach(option => {
     }
 });
 
-
-
-// ЭТО ПРИМЕР - нужно будет адаптировать под вашу систему профилей
-/*
+// profile
 document.addEventListener('DOMContentLoaded', function() {
-    // Получаем данные пользователя
-    const userProfile = getUserProfile(); 
-    
-    // Находим все возможные блоки статусов
-    const pendingStatus = document.querySelector('.status-pending');
-    const approvedStatus = document.querySelector('.status-approved');
-    const rejectedStatus = document.querySelector('.status-rejected');
-    
-    // Сначала скрываем все статусы
-    pendingStatus.style.display = 'none';
-    approvedStatus.style.display = 'none';
-    rejectedStatus.style.display = 'none';
-    
-    // Показываем только нужный статус в зависимости от verificationStatus
-    switch(userProfile.verificationStatus) {
-        case 'approved':
-            approvedStatus.style.display = 'flex';
-            break;
-        case 'rejected':
-            rejectedStatus.style.display = 'flex';
-            break;
-        case 'pending':
-        default:
-            pendingStatus.style.display = 'flex';
+    const registerForm = document.querySelector('.register-form');
+    if (registerForm) {
+        registerForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const fullname = document.getElementById('fullname').value;
+            const civilnumber = document.getElementById('civilnumber').value;
+
+            
+        });
     }
+
+const registrationForm = document.querySelector('.registration-form');
+if (registrationForm) {
+registrationForm.style.opacity = '0';
+registrationForm.style.transform = 'translateY(20px)';
+registrationForm.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+
+requestAnimationFrame(() => {
+    registrationForm.style.opacity = '1';
+    registrationForm.style.transform = 'translateY(0)';
 });
-
-function getUserProfile() {
-    // Здесь будет запрос к API или получение данных из хранилища
-    return {
-        verificationStatus: "pending" // или "approved", или "rejected"
-    };
 }
-*/
-
-
-
-
+});
