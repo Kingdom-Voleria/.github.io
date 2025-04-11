@@ -16,30 +16,21 @@
         <nav class="header-links">
             <a href="index.html">Главная</a>
             <a href="elections.html">Голосования</a>
-            <a href="profile.html">Профиль</a>
+            <a href="registration.html">Профиль</a>
         </nav>
     </header>
 
-    <!-- Registration -->
-    <div class="registration-form">
-        <h2>Регистрация избирателя</h2>
-        <form class="register-form">
-            <div class="form-group">
-                <label for="fullname" class="form-label">Фамилия Имя Отчество</label>
-                <input type="text" id="fullname" name="fullname" class="form-input" required 
-                       pattern="[A-Za-zА-Яа-яЁё\s]+" title="Пожалуйста, используйте только буквы">
-                <span class="form-hint">Отчество не обязательно</span>
-            </div>
-            <div class="form-group">
-                <label for="civilnumber" class="form-label">Гражданский номер</label>
-                <input type="text" id="civilnumber" name="civilnumber" class="form-input" required 
-                       pattern="\d+" title="Пожалуйста, используйте только цифры">
-            </div>
-            <button type="submit" class="action-button submit-button">Зарегистрироваться</button>
-        </form>
+    <div class="profile-card">
+        <img src="" alt="Avatar" class="avatar-preview" id="avatarPreview">
+        <div>
+            <label for="avatarInput" class="upload-label">Загрузить аватар</label>
+            <input type="file" id="avatarInput" accept="image/*">
+        </div>
+        <div class="info-field"><strong>ФИО:</strong> <span id="userFullname"></span></div>
+        <div class="info-field"><strong>Гражданский номер:</strong> <span id="userCivilnumber"></span></div>
+    </div>
     </div>
 
-    
     <script src="main.js"></script>
 </body>
 </html>

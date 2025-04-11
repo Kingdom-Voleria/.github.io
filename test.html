@@ -1,813 +1,95 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ЦИК Королевства Волерия</title>
+    <meta charset="UTF-8">
+    <title>Профиль</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            user-select: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-        }
-
-        body {
-            font-family: 'Arial', 'Verdana', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #fff;
-            scroll-behavior: smooth;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            body {
-                scroll-behavior: auto;
-            }
-        }
-
-        .header {
-            display: flex;
-            flex-direction: column;
-            padding: 10px 0;
-            background-color: #f8f8f8;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            width: 100%;
-        }
-
-        .header-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            padding: 0 5%;
-        }
-
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .header-logo {
-            height: 50px;
-            width: auto;
-        }
-
-        .header-title {
-            font-size: 18px;
-            font-weight: bold;
-            color: #333;
-            margin: 0;
-        }
-
-        .header-links {
-            display: flex;
-            gap: 15px;
-            font-size: 16px;
-            width: 100%;
-            justify-content: center;
-            border-top: 1px solid #eee;
-            padding: 10px 5%;
-            background-color: #f8f8f8;
-        }
-
-        .header-links a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            white-space: nowrap;
-            padding: 5px 10px;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-        }
-
-        .header-links a:hover {
-            color: #0066cc;
-            background-color: #f0f0f0;
-        }
-
-        .main-content {
-            padding: 40px 5%;
-        }
-
-        .content-section {
-            display: flex;
-            align-items: center;
-            margin-bottom: 60px;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .content-section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .section-image {
-            flex: 1;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .section-image img {
-            max-width: 80%;
-            height: auto;
-            object-fit: contain;
-        }
-
-        .register-section .section-image img {
-            max-width: 50%;
-            max-height: 400px;
-        }
-
-        .section-text {
-            flex: 1;
-            padding: 20px;
-        }
-
-        .section-text h2 {
-            font-size: 28px;
-            margin-bottom: 1px;
-            color: #0066cc;
-            padding-bottom: 10px;
-        }
-
-        .section-text p {
-            font-size: 18px;
-            line-height: 1.6;
-            color: #555;
-        }
-
-        .action-buttons {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .action-button {
-            padding: 12px 20px;
-            background-color: #0066cc;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            text-decoration: none;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            cursor: pointer;
+        .profile-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            padding: 24px;
             text-align: center;
-            min-width: 150px;
-            white-space: nowrap;
+            max-width: 480px;
+            margin: 40px auto;
         }
 
-        .action-button:hover {
-            background-color: #0054a9;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        .avatar-preview {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 16px;
+            border: 2px solid #ddd;
         }
 
-        .title-active, .title-inactive {
-            text-align: center;
-            margin: 30px 0;
-            font-size: 25px;
-            font-family: 'Arial', 'Verdana', sans-serif;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+        .upload-button {
+            margin-top: 8px;
+            font-size: 14px;
         }
 
-        .selection-icon {
-            width: 30px;
-            height: 30px;
-            object-fit: contain;
+        .info-field {
+            margin: 12px 0;
+            font-size: 16px;
         }
 
-        .date-icon {
-            width: 25px;
-            height: 25px;
-            margin-right: 6px;
-            vertical-align: middle;
-        }
-
-        .selection-active {
+        input[type="file"] {
             display: none;
         }
 
-        .selection-block {
-            width: 90%;
-            max-width: 500px;
-            padding: 20px;
-            margin: 15px auto;
-            background-color: #f8f9fa;
-            border: 1px solid #dee2e6;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            font-family: Arial, sans-serif;
-            color: #212529;
-            line-height: 1.5;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .selection-block:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-        }
-
-        .selection-block p {
-            margin-bottom: 0;
-        }
-
-        .title-block {
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .selection-description {
-            color: #666;
-            font-size: 16px;
-            margin-bottom: 8px;
-        }
-
-        .selection-date {
-            margin-top: 10px;
-            font-size: 14px;
-            color: #555;
-            display: flex;
-            align-items: center;
-        }
-
-        .date-text {
-            margin-left: 5px;
-        }
-
-        .selection-status {
-            margin-top: 10px;
-            display: flex;
-            align-items: center;
-            font-size: 14px;
-            padding: 5px 0;
-        }
-
-        .status-icon {
-            width: 25px;
-            height: 25px;
-            margin-right: 8px;
-        }
-
-        .status-approved {
-            color: #28a745; 
-        }
-
-        .status-rejected {
-            color: #dc3545; 
-        }
-
-        .status-pending {
-            color: #ffc107; 
-        }
-
-        .voting-block {
-            max-width: 500px;
-            margin: 20px auto;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background-color: #f9f9f9;
-        }
-
-        .voting-block h3 {
-            margin-top: 0;
-            color: #333;
-        }
-
-        .vote-option {
-            margin: 10px 0;
-            padding: 12px;
-            background-color: #fff;
-            border-radius: 4px;
-            border: 1px solid #ddd;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .vote-option:hover {
-            border-color: #0066cc;
-        }
-
-        .vote-option.selected {
-            background-color: #e6f2ff;
-            border-color: #0066cc;
-        }
-
-        .vote-option label {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            width: 100%;
-            height: 100%;
-        }
-
-        .vote-option input[type="radio"] {
-            margin-right: 10px;
-        }
-
-        .voting-block button {
-            margin-top: 15px;
-            padding: 10px 15px;
-            background-color: #0066cc;
+        label.upload-label {
+            background: #007BFF;
             color: white;
-            border: none;
-            border-radius: 4px;
+            padding: 6px 14px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: background 0.3s ease;
         }
 
-        .voting-block button:hover {
-            background-color: #0054a9;
-        }
-
-        :root {
-            --radio-color: #0066cc;
-        }
-
-        input[type="radio"] {
-            accent-color: var(--radio-color);
-            width: 16px;
-            height: 16px;
-        }
-
-        .registration-form {
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 20px;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .registration-form.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .registration-form h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #0066cc;
-        }
-
-        .register-form {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-
-        .form-hint {
-            color: #666;
-            font-size: 0.8em;
-            margin-top: 3px;
-        }
-
-        .submit-button {
-            width: 100%;
-        }
-
-        @media (min-width: 769px) {
-            .header {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-                padding: 10px 5%;
-            }
-
-            .header-links {
-                margin-top: 0;
-                width: auto;
-                justify-content: flex-end;
-                border-top: none;
-                padding: 0;
-                background-color: transparent;
-            }
-
-            .header-logo {
-                height: 75px;
-            }
-
-            .header-title {
-                font-size: 24px;
-            }
-
-            .register-section .action-buttons {
-                justify-content: flex-start;
-            }
-            .vote-section .action-buttons {
-                justify-content: flex-end;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .content-section:first-child {
-                position: relative;
-                padding-bottom: 70px;
-            }
-            
-            .content-section:first-child .action-buttons {
-                position: absolute;
-                bottom: 0;
-                left: 50%;
-                transform: translateX(-50%);
-                display: flex;
-                gap: 15px;
-                margin-top: 20px;
-                width: auto;
-                justify-content: center;
-            }
-            
-            .content-section {
-                display: flex;
-                flex-wrap: wrap;
-                margin-bottom: 30px;
-            }
-            
-            .section-image, .section-text {
-                padding: 15px;
-            }
-            
-            .section-image img {
-                max-width: 100%;
-                max-height: 200px;
-            }
-
-            .content-section:first-child .section-image,
-            .vote-section .section-image {
-                flex: 0 0 40%;
-                max-width: 40%;
-                order: 1;
-            }
-            
-            .content-section:first-child .section-text,
-            .vote-section .section-text {
-                flex: 0 0 60%;
-                max-width: 60%;
-                order: 2;
-            }
-
-            .register-section .section-text {
-                flex: 0 0 60%;
-                max-width: 60%;
-                order: 1;
-            }
-            
-            .register-section .section-image {
-                flex: 0 0 40%;
-                max-width: 40%;
-                order: 2;
-            }
-            
-            .section-text h2 {
-                font-size: 18px;
-                margin-bottom: 8px;
-            }
-            
-            .section-text p {
-                font-size: 14px;
-            }
-
-            .action-buttons {
-                gap: 8px;
-                overflow-x: auto;
-                padding-bottom: 5px;
-                -webkit-overflow-scrolling: touch;
-                scrollbar-width: none;
-                justify-content: center;
-                width: 100%;
-            }
-            
-            .action-buttons::-webkit-scrollbar {
-                display: none;
-            }
-            
-            .action-button {
-                padding: 8px 12px;
-                font-size: 14px;
-                min-width: 0;
-                flex: 0 0 auto;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                max-width: 45vw;
-            }
-
-            .register-section .section-text .action-buttons,
-            .vote-section .section-text .action-buttons {
-                justify-content: center;
-                margin-left: auto;
-                margin-right: auto;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .header {
-                flex-direction: column;
-                padding: 10px 0;
-            }
-
-            .header-top {
-                padding: 0 5%;
-            }
-
-            .header-left {
-                flex-direction: row;
-                align-items: center;
-                gap: 10px;
-                flex-wrap: wrap;
-            }
-
-            .header-title {
-                font-size: 16px;
-                flex: 1;
-                min-width: 200px;
-            }
-
-            .header-logo {
-                height: 55px;
-            }
-
-            .header-links {
-                font-size: 14px;
-                gap: 10px;
-                padding: 10px 5%;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .header {
-                flex-direction: column;
-                padding: 10px 0;
-            }
-
-            .header-top {
-                padding: 0 5%;
-            }
-
-            .header-left {
-                flex-direction: row;
-                align-items: center;
-                gap: 10px;
-                flex-wrap: wrap;
-            }
-
-            .header-title {
-                font-size: 16px;
-                flex: 1;
-                min-width: 200px;
-            }
-
-            .header-logo {
-                height: 55px;
-            }
-
-            .header-links {
-                font-size: 14px;
-                gap: 10px;
-                padding: 10px 5%;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .section-image, .section-text {
-                padding: 10px;
-            }
-            
-            .content-section:first-child .action-button {
-                min-width: 120px;
-                font-size: 13px;
-                padding: 8px 4px;
-            }
-
-            .register-section .section-image img {
-                max-width: 90%;
-                max-height: 250px;
-            }
-            
-            .section-text h2 {
-                font-size: 16px;
-            }
-            
-            .section-text p {
-                font-size: 13px;
-            }
-            
-            .action-button {
-                font-size: 13px;
-                padding: 7px 10px;
-            }
-        }
-
-        @media (max-width: 350px) {
-            .content-section:first-child .action-buttons {
-                gap: 5px;
-            }
-            
-            .content-section:first-child .section-image,
-            .register-section .section-image,
-            .vote-section .section-image {
-                flex: 0 0 35%;
-                max-width: 35%;
-            }
-            
-            .content-section:first-child .section-text,
-            .register-section .section-text,
-            .vote-section .section-text {
-                flex: 0 0 65%;
-                max-width: 65%;
-            }
-
-            .action-buttons {
-                gap: 5px;
-            }
-            
-            .action-button {
-                font-size: 12px;
-                min-width: 80px;
-                padding: 6px 8px;
-            }
+        label.upload-label:hover {
+            background: #0056b3;
         }
     </style>
 </head>
 <body>
-    <!-- TOP MENU -->
-    <header class="header">
-        <div class="header-left">
-            <img src="image/header_emblem.png" class="header-logo" alt="Герб Королевства Волерия">
-            <h1 class="header-title">Центральная избирательная комиссия <br>Королевства Волерия</h1>
+    <div class="profile-card">
+        <img src="" alt="Avatar" class="avatar-preview" id="avatarPreview">
+        <div>
+            <label for="avatarInput" class="upload-label">Загрузить аватар</label>
+            <input type="file" id="avatarInput" accept="image/*">
         </div>
-        <nav class="header-links">
-            <a href="index.html">Главная</a>
-            <a href="elections.html">Голосования</a>
-            <a href="profile.html">Профиль</a>
-        </nav>
-    </header>
-
-    <!-- Registration -->
-    <div class="registration-form">
-        <h2>Регистрация избирателя</h2>
-        <form class="register-form">
-            <div class="form-group">
-                <label for="fullname" class="form-label">Фамилия Имя Отчество</label>
-                <input type="text" id="fullname" name="fullname" class="form-input" required 
-                       pattern="[A-Za-zА-Яа-яЁё\s]+" title="Пожалуйста, используйте только буквы">
-                <span class="form-hint">Отчество не обязательно</span>
-            </div>
-            <div class="form-group">
-                <label for="civilnumber" class="form-label">Гражданский номер</label>
-                <input type="text" id="civilnumber" name="civilnumber" class="form-input" required 
-                       pattern="\d+" title="Пожалуйста, используйте только цифры">
-            </div>
-            <button type="submit" class="action-button submit-button">Зарегистрироваться</button>
-        </form>
+        <div class="info-field"><strong>ФИО:</strong> <span id="userFullname"></span></div>
+        <div class="info-field"><strong>Гражданский номер:</strong> <span id="userCivilnumber"></span></div>
     </div>
 
-
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const registerForm = document.querySelector('.register-form');
-            if (registerForm) {
-                registerForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    const fullname = document.getElementById('fullname').value;
-                    const civilnumber = document.getElementById('civilnumber').value;
+        const user = JSON.parse(localStorage.getItem('user'));
 
-                    
-                });
-            }
+        if (!user) {
+            alert('Пользователь не найден. Перенаправляем...');
+            window.location.href = 'index.html';
+        } else {
+            document.getElementById('userFullname').textContent = user.fullname;
+            document.getElementById('userCivilnumber').textContent = user.civilnumber;
 
-    const registrationForm = document.querySelector('.registration-form');
-    if (registrationForm) {
-        registrationForm.style.opacity = '0';
-        registrationForm.style.transform = 'translateY(20px)';
-        registrationForm.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            const avatarPreview = document.getElementById('avatarPreview');
+            avatarPreview.src = user.avatar || 'image/empty-profile.png';
 
-        requestAnimationFrame(() => {
-            registrationForm.style.opacity = '1';
-            registrationForm.style.transform = 'translateY(0)';
-        });
-    }
-});
+            document.getElementById('avatarInput').addEventListener('change', function () {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        const avatarData = e.target.result;
+                        avatarPreview.src = avatarData;
 
-        // main
-        document.addEventListener('DOMContentLoaded', function() {
-            const sections = document.querySelectorAll('.content-section');
-            
-            function checkVisibility() {
-                sections.forEach(section => {
-                    const rect = section.getBoundingClientRect();
-                    const isVisible = (rect.top <= window.innerHeight * 0.8) && 
-                                      (rect.bottom >= window.innerHeight * 0.2);
-                    
-                    if (isVisible) {
-                        section.classList.add('visible');
-                    }
-                });
-            }
-
-            checkVisibility();
-
-            window.addEventListener('scroll', checkVisibility);
-        });
-
-        document.querySelectorAll('.action-button').forEach(button => {
-            button.addEventListener('click', function(e) {
-                const targetId = this.getAttribute('href');
-                if (targetId.startsWith('#')) {
-                    e.preventDefault();
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        const elementPosition = targetElement.getBoundingClientRect().top;
-                        const offsetPosition = elementPosition + window.pageYOffset - 80;
-                        
-                        window.scrollTo({
-                            top: offsetPosition,
-                            behavior: 'smooth'
-                        });
-                    }
+                        user.avatar = avatarData;
+                        localStorage.setItem('user', JSON.stringify(user));
+                    };
+                    reader.readAsDataURL(file);
                 }
             });
-        });
-
-        // elections
-        document.addEventListener('DOMContentLoaded', function() {
-            const electionBlocks = document.querySelectorAll('.selection-block, .title-active, .title-inactive');
-            
-            function checkElectionVisibility() {
-                electionBlocks.forEach(block => {
-                    const rect = block.getBoundingClientRect();
-                    const isVisible = (rect.top <= window.innerHeight * 0.8) && 
-                                      (rect.bottom >= window.innerHeight * 0.2);
-                    
-                    if (isVisible) {
-                        block.style.opacity = '1';
-                        block.style.transform = 'translateY(0)';
-                    }
-                });
-            }
-
-            electionBlocks.forEach(block => {
-                block.style.opacity = '0';
-                block.style.transform = 'translateY(20px)';
-                block.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            });
-
-            checkElectionVisibility();
-            window.addEventListener('scroll', checkElectionVisibility);
-        });
-
-        // vote
-        document.querySelectorAll('.vote-option').forEach(option => {
-            option.addEventListener('click', function() {
-                const radio = this.querySelector('input[type="radio"]');
-                if (radio) {
-                    radio.checked = true;
-                    
-                    document.querySelectorAll('.vote-option').forEach(opt => {
-                        opt.classList.remove('selected');
-                    });
-
-                    this.classList.add('selected');
-                }
-            });
-
-            const radio = option.querySelector('input[type="radio"]');
-            if (radio && radio.checked) {
-                option.classList.add('selected');
-            }
-        });
+        }
     </script>
 </body>
 </html>
