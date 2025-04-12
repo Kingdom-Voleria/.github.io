@@ -36,6 +36,31 @@ app.post('/api/register', (req, res) => {
     res.json({ success: true, message: 'Регистрация прошла успешно', user: newUser });
 });
 
+// Маршрут для обновления аватарки
+app.post('/api/update-avatar', (req, res) => {
+    const { civilnumber, avatar } = req.body;
+
+    const user = users.find(u => u.civilnumber === civilnumber);
+    if (!user) {
+        return res.status(404).json({ success: false, message: 'Пользователь не найден' });
+    }
+
+    user.avatar = avatar;
+    console.log(`Аватарка пользователя ${user.fullname} обновлена`);
+
+    res.json({ success: true, message: 'Аватарка обновлена', user });
+});
+
+// Маршрут для отображения списка пользователей
+app.get('/api/users', (req, res) => {
+    console.log('Список зарегистрированных пользователей:');
+    users.forEach(user => {
+        console.log(`ФИО: ${user.fullname}, Гражданский номер: ${user.civilnumber}, Аватар: ${user.avatar || 'не задан'}`);
+    });
+
+    res.json({ success: true, users });
+});
+
 // Запуск сервера
 app.listen(port, () => {
     console.log(`Сервер запущен на http://localhost:${port}`);
